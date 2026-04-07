@@ -38,7 +38,7 @@ const STATUS_MESSAGES: Record<string, string> = {
   cancelled: 'Your order has been cancelled.',
 };
 
-interface ExtendedOrder extends IOrder {
+interface ExtendedOrder extends Omit<IOrder, 'user'> {
   user: { _id: string; name: string; email: string };
 }
 

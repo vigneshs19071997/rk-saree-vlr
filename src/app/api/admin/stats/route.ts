@@ -5,7 +5,7 @@ import { Order } from '@/models/Order';
 import { Product } from '@/models/Product';
 import { User } from '@/models/User';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from '@/lib/authOptions';
 
 export async function GET() {
   try {
