@@ -17,11 +17,22 @@ async function seed() {
   const Product = mongoose.models.Product || mongoose.model('Product', ProductSchema);
 
   // Create admin
-  const adminExists = await User.findOne({ email: 'admin@silkdrapes.com' });
+  const adminEmail = 'admin@silkdrapes.com';       // ← Change email here
+  const adminPassword = 'admin123';                 // ← Change password here
+  const adminName = 'Admin';                        // ← Change name here
+  
+  const adminExists = await User.findOne({ email: adminEmail });
   if (!adminExists) {
-    const hashed = await bcrypt.hash('admin123', 12);
-    await User.create({ name: 'Admin', email: 'admin@silkdrapes.com', password: hashed, role: 'admin', addresses: [], favourites: [] });
-    console.log('✅ Admin created: admin@silkdrapes.com / admin123');
+    const hashed = await bcrypt.hash(adminPassword, 12);
+    await User.create({ 
+      name: adminName, 
+      email: adminEmail, 
+      password: hashed, 
+      role: 'admin', 
+      addresses: [], 
+      favourites: [] 
+    });
+    console.log(`✅ Admin created: ${adminEmail} / ${adminPassword}`);
   }
 
   // Sample products
